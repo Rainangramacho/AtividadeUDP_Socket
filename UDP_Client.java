@@ -10,6 +10,7 @@ public class UDP_Client{
 		// c:\> java UDPClient1 <mensagem> <endDst>
 		DatagramSocket dsocket = new DatagramSocket();
 		Scanner input = new Scanner(System.in);
+		String mensagemSair = "Cliente Saindo...";
 		
 		
 		System.out.print("Digite sua mensagem: ");
@@ -35,7 +36,7 @@ public class UDP_Client{
 			portaDst = input.nextInt();
 			
 		}else{
-			portaDst = 6789;
+			portaDst = 6789; //como argumento
 		}
 		
 		
@@ -46,7 +47,6 @@ public class UDP_Client{
 		//int portaDst = 6789;
 		
 		DatagramPacket pctVai = new DatagramPacket(msgVai, msgVai.length, endDst, portaDst);
-		dsocket.setSoTimeout(30000);
 		dsocket.send(pctVai);
 		
 		System.out.println("Enviei solicitacao ao Servidor\n");
@@ -54,11 +54,10 @@ public class UDP_Client{
 		byte[] msgVem = new byte[1024];
 		DatagramPacket pctVem = new DatagramPacket(msgVem, msgVem.length);
 		dsocket.receive(pctVem);
-		Thread.sleep(10000); 
 		System.out.println("Recebi resposta do Servidor:\n");
-		System.out.println("Chegou: " + new String(pctVem.getData()).trim());
-		
-		
+		System.out.println("Chegou: " + new String(pctVem.getData()));
+
+		Thread.sleep(5000);
 		dsocket.close();
 		
 		}	catch(Exception e){
