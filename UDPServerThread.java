@@ -19,6 +19,7 @@ class UDPServerThread extends Thread{
 		try{
 			DatagramSocket dst = new DatagramSocket();
 			dst.send(pctVai);  // essa linha veio do UDPServer3
+			 Thread.sleep(8000);//esse sleep faz com que dê tempo de mostrar a quantidade de clientes ativos
 			dst.close();
 		}catch(Exception e){
 			

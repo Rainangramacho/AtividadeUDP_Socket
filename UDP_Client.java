@@ -8,7 +8,7 @@ public class UDP_Client{
 
 	public static void main(String args[]) throws Exception{
 		// c:\> java UDPClient1 <mensagem> <endDst>
-		DatagramSocket ds = new DatagramSocket();
+		DatagramSocket dsocket = new DatagramSocket();
 		Scanner input = new Scanner(System.in);
 		
 		
@@ -46,18 +46,20 @@ public class UDP_Client{
 		//int portaDst = 6789;
 		
 		DatagramPacket pctVai = new DatagramPacket(msgVai, msgVai.length, endDst, portaDst);
-		ds.send(pctVai);
+		dsocket.setSoTimeout(30000);
+		dsocket.send(pctVai);
 		
 		System.out.println("Enviei solicitacao ao Servidor\n");
 
 		byte[] msgVem = new byte[1024];
 		DatagramPacket pctVem = new DatagramPacket(msgVem, msgVem.length);
-		ds.receive(pctVem);
+		dsocket.receive(pctVem);
+		Thread.sleep(10000); 
 		System.out.println("Recebi resposta do Servidor:\n");
-		System.out.println("Chegou: " + new String(pctVem.getData()));
-
-		Thread.sleep(5000);
-		ds.close();
+		System.out.println("Chegou: " + new String(pctVem.getData()).trim());
+		
+		
+		dsocket.close();
 		
 		}	catch(Exception e){
 			
