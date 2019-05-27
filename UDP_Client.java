@@ -11,19 +11,27 @@ public class UDP_Client{
 		DatagramSocket dsocket = new DatagramSocket();
 		Scanner input = new Scanner(System.in);
 		String mensagemSair = "Cliente Saindo...";
+		byte[] msgVai = new byte [1024];
+		String mensagemVai = null;
 		
 		
-		System.out.print("Digite sua mensagem: ");
-		String mensagemVai = input.nextLine();
-		if(mensagemVai.isEmpty()){
-			mensagemVai = "nulo";
+		if(args.length == 0){
+			System.out.print("Digite sua mensagem: ");
+			mensagemVai = input.nextLine();
+					if(mensagemVai.isEmpty()){
+						mensagemVai = "nulo";
+					}	
+		msgVai = mensagemVai.getBytes();
+			
+		} else{
+			msgVai = args[0].getBytes();
+			
 		}
-		
 		
 		System.out.print("Digite o endereço de destino: ");
 		String endDestino = input.nextLine();
 		if(endDestino.isEmpty()){
-			mensagemVai = "localhost";
+			endDestino = "localhost";
 		}
 		
 		
@@ -42,7 +50,8 @@ public class UDP_Client{
 		
 		try{
 		//byte[] msgVai = args[0].getBytes();
-		byte[] msgVai = mensagemVai.getBytes(); // tirando a opão de passar mensagem por argumento, agr sera passada pelo scanner
+		//byte[] msgVai = mensagemVai.getBytes(); // tirando a opão de passar mensagem por argumento, agr sera passada pelo scanner
+		
 		InetAddress endDst = InetAddress.getByName(endDestino);
 		//int portaDst = 6789;
 		
