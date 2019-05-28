@@ -20,6 +20,7 @@ public class UDP_Client{
 		String endString = null;
 		String portArgInt = null;
 		
+		
 		if(args.length == 0){
 			System.out.print("Digite sua mensagem: ");
 			mensagemVai = input.nextLine();
@@ -35,6 +36,7 @@ public class UDP_Client{
 			
 		}
 		
+		
 		if(args.length <=1){
 			System.out.print("Digite o endereço de destino: ");
 			endDestino = input.nextLine();
@@ -43,12 +45,13 @@ public class UDP_Client{
 				}
 				
 			 endDst = InetAddress.getByName(endDestino);
-			 
+	
 		} else if(args.length >1){
 			endD = args[1].getBytes();
 			endString = new String(endD);
 			endDst = InetAddress.getByName(endString);
 		}
+			
 			
 		int portaDst = 0;
 		if(args.length <=2){
