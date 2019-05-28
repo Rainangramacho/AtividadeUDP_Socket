@@ -1,0 +1,4 @@
+-pode passar os três argumentos -- ok
+-pode não passar nenhum ---- ok
+-pode passar apenas mensagem --- ok
+-pode passar mensagem e destino ----- ok

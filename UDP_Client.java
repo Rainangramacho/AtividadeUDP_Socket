@@ -12,39 +12,67 @@ public class UDP_Client{
 		Scanner input = new Scanner(System.in);
 		String mensagemSair = "Cliente Saindo...";
 		byte[] msgVai = new byte [1024];
+		byte[] endD = new byte [1024];
+		byte[] portArg = new byte [1024];
 		String mensagemVai = null;
+		String endDestino = null;
+		InetAddress endDst = null;
+		String endString = null;
+		String portArgInt = null;
+		
+		
+		
+		
 		
 		
 		if(args.length == 0){
 			System.out.print("Digite sua mensagem: ");
 			mensagemVai = input.nextLine();
-					if(mensagemVai.isEmpty()){
-						mensagemVai = "nulo";
-					}	
-		msgVai = mensagemVai.getBytes();
 			
-		} else{
+				if(mensagemVai.isEmpty()){
+					mensagemVai = "nulo";
+				}	
+			msgVai = mensagemVai.getBytes();
+			
+		} else if(args.length >=1){
 			msgVai = args[0].getBytes();
 			
 		}
 		
-		System.out.print("Digite o endereço de destino: ");
-		String endDestino = input.nextLine();
-		if(endDestino.isEmpty()){
-			endDestino = "localhost";
+		if(args.length <=1){
+			System.out.print("Digite o endereço de destino: ");
+			endDestino = input.nextLine();
+				if(endDestino.isEmpty()){
+					endDestino = "localhost";
+				}
+				
+			 endDst = InetAddress.getByName(endDestino);	
+		} else if(args.length >1){
+			endD = args[1].getBytes();
+			endString = new String(endD);
+			endDst = InetAddress.getByName(endString);
 		}
+			
 		
 		
 		int portaDst = 0;
-		System.out.print("Deseja informar porta de destino? (S/N)");
-		String respostaDaPorta = input.nextLine();
-		
-		if(respostaDaPorta.equalsIgnoreCase("s")){
-			System.out.print("Digite o numero da porta de destino:");
-			portaDst = input.nextInt();
+		if(args.length <=2){
+			System.out.print("Deseja informar porta de destino? (S/N)");
+			String respostaDaPorta = input.nextLine();
 			
-		}else{
-			portaDst = 6789; //como argumento
+			if(respostaDaPorta.equalsIgnoreCase("s")){
+				System.out.print("Digite o numero da porta de destino:");
+				portaDst = input.nextInt();
+				
+			}else{
+				portaDst = 6789; //como argumento
+			}
+			
+		}else if(args.length >2){
+			portArg = args[2].getBytes();
+			portArgInt = new String(portArg);
+			portaDst = Integer.parseInt(portArgInt);
+			
 		}
 		
 		
@@ -52,7 +80,7 @@ public class UDP_Client{
 		//byte[] msgVai = args[0].getBytes();
 		//byte[] msgVai = mensagemVai.getBytes(); // tirando a opão de passar mensagem por argumento, agr sera passada pelo scanner
 		
-		InetAddress endDst = InetAddress.getByName(endDestino);
+		//InetAddress endDst = InetAddress.getByName(endDestino);
 		//int portaDst = 6789;
 		
 		DatagramPacket pctVai = new DatagramPacket(msgVai, msgVai.length, endDst, portaDst);
