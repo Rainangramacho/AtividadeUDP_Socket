@@ -21,32 +21,23 @@ public class UDP_Client{
 		String portArgInt = null;
 		
 		
-		if(args.length == 0){
-			System.out.print("Digite sua mensagem: ");
-			mensagemVai = input.nextLine();
+		if(args.length == 0){ // se nao tiver arg
 			
-				if(mensagemVai.isEmpty()){
-					mensagemVai = "nulo";
-				}	
-				
+			mensagemVai = "nulo";
 			msgVai = mensagemVai.getBytes();
 			
-		} else if(args.length >=1){
+		} else if(args.length >=1){ // se tiver um arg
 			msgVai = args[0].getBytes();
 			
 		}
 		
 		
-		if(args.length <=1){
-			System.out.print("Digite o endereço de destino: ");
-			endDestino = input.nextLine();
-				if(endDestino.isEmpty()){
-					endDestino = "localhost";
-				}
-				
-			 endDst = InetAddress.getByName(endDestino);
+		if(args.length <=1){ // se nao tiver arg ou se tiver so o primeiro arg
+			
+			endDestino = "localhost";
+			endDst = InetAddress.getByName(endDestino);
 	
-		} else if(args.length >1){
+		} else if(args.length >1){// se tiver o primeiro arg e o segundo arg
 			endD = args[1].getBytes();
 			endString = new String(endD);
 			endDst = InetAddress.getByName(endString);
@@ -54,17 +45,10 @@ public class UDP_Client{
 			
 			
 		int portaDst = 0;
-		if(args.length <=2){
-			System.out.print("Deseja informar porta de destino? (S/N)");
-			String respostaDaPorta = input.nextLine();
+		if(args.length <=2){// se nao tiver arg, ou se tiver so o primeiro arg,ou se tiver o primeiro e o segundo arg 
+
+			portaDst = 6789; 
 			
-			if(respostaDaPorta.equalsIgnoreCase("s")){
-				System.out.print("Digite o numero da porta de destino:");
-				portaDst = input.nextInt();
-				
-			}else{
-				portaDst = 6789; //como argumento
-			}
 			
 		}else if(args.length >2){
 			portArg = args[2].getBytes();

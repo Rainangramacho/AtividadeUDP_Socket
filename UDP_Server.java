@@ -15,18 +15,22 @@ public class  UDP_Server{
 		DatagramSocket dsocket = null;
 		Scanner input = new Scanner(System.in);
 		int porta =0;
-		System.out.print("Deseja informar porta? (S/N)");
-		String respostaDaPorta = input.nextLine();
+		String portServerString = "";
+		byte[] portServerArg = new byte [1024];
+		
+		if(args.length == 0){ 
+			porta = 6789;
+		
+		} else if(args.length >=1){
+			portServerArg = args[0].getBytes();
+			portServerString = new String(portServerArg);
+			porta = Integer.parseInt(portServerString);
+		}
 		
 		try {
-			if(respostaDaPorta.equalsIgnoreCase("s")) {
-			System.out.print("Digite o numero para a porta: ");
-			porta = input.nextInt();
+			
 			dsocket = new DatagramSocket(porta);
-		  }
-			  else{
-				dsocket = new DatagramSocket();
-		  }
+			  
 		
 		
 		System.out.printf("Aguardando Cliente na porta %d...\n",dsocket.getLocalPort());
