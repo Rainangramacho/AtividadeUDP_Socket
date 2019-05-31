@@ -23,7 +23,7 @@ public class UDP_Client{
 		
 		if(args.length == 0){ // se nao tiver arg
 			
-			mensagemVai = "nulo";
+			mensagemVai = "ping";
 			msgVai = mensagemVai.getBytes();
 			
 		} else if(args.length >=1){ // se tiver um arg
