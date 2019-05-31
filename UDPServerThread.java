@@ -5,7 +5,7 @@ import java.net.DatagramSocket;
 class UDPServerThread extends Thread{
 	
 	private DatagramPacket pctVeio;
-	//private DatagramPacket pctVai;
+	
 	
 	public UDPServerThread(DatagramPacket pctVeio){
 		this.pctVeio = pctVeio;
@@ -13,13 +13,13 @@ class UDPServerThread extends Thread{
 	
 	@Override
 	public void run(){
-		// essa linha veio do UDPServer3
+		
 		DatagramPacket pctVai = new DatagramPacket(pctVeio.getData(),pctVeio.getLength(),pctVeio.getAddress(),pctVeio.getPort());
 		
 		try{
 			DatagramSocket dst = new DatagramSocket();
-			dst.send(pctVai);  // essa linha veio do UDPServer3
-			 Thread.sleep(6000);//esse sleep faz com que dê tempo de mostrar a quantidade de clientes ativos
+			dst.send(pctVai);  
+			 Thread.sleep(6000);
 			dst.close();
 		}catch(Exception e){
 			

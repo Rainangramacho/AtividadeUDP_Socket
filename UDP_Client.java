@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class UDP_Client{
 
 	public static void main(String args[]) throws Exception{
-		// c:\> java UDPClient1 <mensagem> <endDst>
+		
 		DatagramSocket dsocket = new DatagramSocket();
 		Scanner input = new Scanner(System.in);
 		String mensagemSair = "Cliente Saindo...";
@@ -21,23 +21,23 @@ public class UDP_Client{
 		String portArgInt = null;
 		
 		
-		if(args.length == 0){ // se nao tiver arg
+		if(args.length == 0){ 
 			
 			mensagemVai = "ping";
 			msgVai = mensagemVai.getBytes();
 			
-		} else if(args.length >=1){ // se tiver um arg
+		} else if(args.length >=1){ 
 			msgVai = args[0].getBytes();
 			
 		}
 		
 		
-		if(args.length <=1){ // se nao tiver arg ou se tiver so o primeiro arg
+		if(args.length <=1){ 
 			
 			endDestino = "localhost";
 			endDst = InetAddress.getByName(endDestino);
 	
-		} else if(args.length >1){// se tiver o primeiro arg e o segundo arg
+		} else if(args.length >1){
 			endD = args[1].getBytes();
 			endString = new String(endD);
 			endDst = InetAddress.getByName(endString);
@@ -45,7 +45,7 @@ public class UDP_Client{
 			
 			
 		int portaDst = 0;
-		if(args.length <=2){// se nao tiver arg, ou se tiver so o primeiro arg,ou se tiver o primeiro e o segundo arg 
+		if(args.length <=2){
 
 			portaDst = 6789; 
 			
@@ -59,11 +59,7 @@ public class UDP_Client{
 		
 		
 		try{
-		//byte[] msgVai = args[0].getBytes();
-		//byte[] msgVai = mensagemVai.getBytes(); // tirando a opão de passar mensagem por argumento, agr sera passada pelo scanner
 		
-		//InetAddress endDst = InetAddress.getByName(endDestino);
-		//int portaDst = 6789;
 		
 		DatagramPacket pctVai = new DatagramPacket(msgVai, msgVai.length, endDst, portaDst);
 		dsocket.send(pctVai);

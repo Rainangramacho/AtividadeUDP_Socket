@@ -11,7 +11,7 @@ public class  UDP_Server{
 	
 	public static void main(String args[]) throws Exception {
 		
-		//DatagramSocket ds = new DatagramSocket(6789);
+		
 		DatagramSocket dsocket = null;
 		Scanner input = new Scanner(System.in);
 		int porta =0;
@@ -35,7 +35,7 @@ public class  UDP_Server{
 		
 		System.out.printf("Aguardando Cliente na porta %d...\n",dsocket.getLocalPort());
 		
-		//int clientes = 0;
+		
 		byte[] msg = new byte[1024];
 		
 		ArrayList<UDPServerThread> threads = new ArrayList<>();
@@ -73,11 +73,7 @@ public class  UDP_Server{
         thread.start();
 		
 		System.out.println("Enviei resposta ao Cliente\n");
-		//Thread.sleep(2000);
-		//new UDPServerThread(pctVeio).start();
 		
-		//clientes ++;
-		//System.out.printf("Estou atendendo %d ",clientes);
 		
 		
 		
@@ -85,7 +81,7 @@ public class  UDP_Server{
 		}
 		}catch(Exception e){
 		}
-		//ds.close();
+		
 	
 	}	
 	
